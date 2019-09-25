@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/legoThemeFragment">
+
+    <fragment
+        android:id="@+id/legoThemeFragment"
+        android:name="ru.nikiz.legocatalog.ui.LegoThemeFragment"
+        android:label="fragment_lego_theme"
+        tools:layout="@layout/fragment_lego_theme" >
+        <action
+            android:id="@+id/action_legoThemeFragment_to_legoSetFragment"
+            app:destination="@id/legoSetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/legoSetFragment"
+        android:name="ru.nikiz.legocatalog.ui.LegoSetFragment"
+        android:label="fragment_lego_set"
+        tools:layout="@layout/fragment_lego_set" >
+        <action
+            android:id="@+id/action_legoSetFragment_to_legoSetDetailsFragment"
+            app:destination="@id/legoSetDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/legoSetDetailsFragment"
+        android:name="ru.nikiz.legocatalog.ui.LegoSetDetailsFragment"
+        android:label="fragment_lego_set_details"
+        tools:layout="@layout/fragment_lego_set_details" />
+</navigation>
