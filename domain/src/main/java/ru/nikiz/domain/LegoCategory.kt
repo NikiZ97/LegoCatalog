@@ -1,4 +1,4 @@
-package ru.nikiz.data.entity
+package ru.nikiz.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

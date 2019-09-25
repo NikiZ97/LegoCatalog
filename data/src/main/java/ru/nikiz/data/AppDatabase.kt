@@ -4,10 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import ru.nikiz.data.entity.LegoCategory
+import ru.nikiz.data.dao.LegoSetDao
+import ru.nikiz.data.dao.LegoThemeDao
+import ru.nikiz.domain.LegoCategory
 
 @Database(entities = [LegoCategory::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
+
+    abstract fun legoThemeDao(): LegoThemeDao
+    abstract fun legoSetDao(): LegoSetDao
 
     companion object {
 

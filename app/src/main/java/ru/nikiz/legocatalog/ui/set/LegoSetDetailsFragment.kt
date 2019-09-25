@@ -1,4 +1,4 @@
-package ru.nikiz.legocatalog.ui
+package ru.nikiz.legocatalog.ui.set
 
 
 import android.os.Bundle
@@ -11,14 +11,14 @@ import ru.nikiz.legocatalog.R
 /**
  * A simple [Fragment] subclass.
  */
-class LegoSetFragment : Fragment() {
+class LegoSetDetailsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lego_set, container, false)
+        return inflater.inflate(R.layout.fragment_lego_set_details, container, false)
     }
 
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/legoThemeFragment"
-        android:name="ru.nikiz.legocatalog.ui.LegoThemeFragment"
+        android:name="ru.nikiz.legocatalog.ui.themes.LegoThemeFragment"
         android:label="fragment_lego_theme"
         tools:layout="@layout/fragment_lego_theme" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/legoSetFragment"
-        android:name="ru.nikiz.legocatalog.ui.LegoSetFragment"
+        android:name="ru.nikiz.legocatalog.ui.sets.LegoSetsFragment"
         android:label="fragment_lego_set"
         tools:layout="@layout/fragment_lego_set" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/legoSetDetailsFragment"
-        android:name="ru.nikiz.legocatalog.ui.LegoSetDetailsFragment"
+        android:name="ru.nikiz.legocatalog.ui.set.LegoSetDetailsFragment"
         android:label="fragment_lego_set_details"
         tools:layout="@layout/fragment_lego_set_details" />
 </navigation>
