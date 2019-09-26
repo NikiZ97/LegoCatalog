@@ -1,8 +1,10 @@
 package ru.nikiz.domain.repository
 
+import androidx.lifecycle.LiveData
 import ru.nikiz.domain.LegoSet
+import ru.nikiz.domain.Result
 
 interface LegoSetRepository {
 
-    suspend fun getSets(): List<LegoSet>
+    fun getSets(): LiveData<Result<List<LegoSet>>>?
 }
