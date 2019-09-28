@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
 
@@ -49,7 +51,6 @@ dependencies {
     // Retrofit
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_adapter_version"
 
     // OkHttp
     api "com.squareup.okhttp3:okhttp:$okhttp_version"
@@ -60,7 +61,7 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     implementation project(':domain')
 }

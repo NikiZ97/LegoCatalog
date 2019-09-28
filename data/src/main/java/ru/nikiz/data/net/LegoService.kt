@@ -13,7 +13,7 @@ interface LegoService {
         const val BASE_URL = "https://rebrickable.com/api/v3/"
     }
 
-    @GET("lego/themes")
+    @GET("lego/themes/")
     suspend fun getCategories(@Query("page") page: Int? = null,
                               @Query("page_size") pageSize: Int? = null,
                               @Query("ordering") order: String? = null)
