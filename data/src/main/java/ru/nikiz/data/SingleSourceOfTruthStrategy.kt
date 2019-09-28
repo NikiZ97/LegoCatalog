@@ -6,6 +6,11 @@ import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
 import ru.nikiz.domain.Result
 
+
+/**
+ * This is data source strategy: first we get data from db,
+ * then we make a network call and finally save our data into database
+ */
 fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
                           networkCall: suspend () -> Result<A>,
                           saveCallResult: suspend (A) -> Unit): LiveData<Result<T>> =

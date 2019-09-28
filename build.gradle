@@ -38,6 +38,8 @@ ext {
     nav_version = '2.1.0'
     koin_version = '2.0.1'
     ktx_lifecycle_ersion = '2.2.0-alpha05'
+    stetho_version = '1.5.1'
+    canary_version = '2.0-beta-3'
 }
 
 task clean(type: Delete) {
