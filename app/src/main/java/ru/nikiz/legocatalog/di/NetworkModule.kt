@@ -1,6 +1,8 @@
 package ru.nikiz.legocatalog.di
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -26,6 +28,7 @@ fun createOkHttpClient(): OkHttpClient {
         .connectTimeout(30L, TimeUnit.SECONDS)
         .readTimeout(30L, TimeUnit.SECONDS)
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(AuthInterceptor(BuildConfig.API_DEVELOPER_TOKEN))
         .build()
 }
 
@@ -35,4 +38,14 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient): T {
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create()).build()
     return retrofit.create(T::class.java)
+}
+
+class AuthInterceptor(private val token: String): Interceptor {
+
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request().newBuilder().addHeader(
+            "Authorization","key $token").build()
+        return chain.proceed(request)
+    }
+
 }
