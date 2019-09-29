@@ -26,6 +26,17 @@
         <action
             android:id="@+id/action_legoSetFragment_to_legoSetDetailsFragment"
             app:destination="@id/legoSetDetailsFragment" />
+
+        <argument
+            android:name="themeId"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+
+        <argument
+            android:name="themeName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </fragment>
     <fragment
         android:id="@+id/legoSetDetailsFragment"

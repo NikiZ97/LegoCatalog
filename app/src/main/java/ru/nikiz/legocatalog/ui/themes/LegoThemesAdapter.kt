@@ -3,6 +3,7 @@ package ru.nikiz.legocatalog.ui.themes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,14 +19,24 @@ class LegoThemesAdapter: ListAdapter<LegoCategory, LegoThemesAdapter.ThemeViewHo
     }
 
     override fun onBindViewHolder(holder: ThemeViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val theme = getItem(position)
+        holder.bind(getItem(position), clickListener(theme.id, theme.name))
+    }
+
+    private fun clickListener(id: Int, name: String): View.OnClickListener {
+        return View.OnClickListener {
+            val direction = LegoThemeFragmentDirections
+                .actionLegoThemeFragmentToLegoSetFragment(id, name)
+            it.findNavController().navigate(direction)
+        }
     }
 
 
     class ThemeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(category: LegoCategory) {
+        fun bind(category: LegoCategory, listener: View.OnClickListener) {
             itemView.themeName.text = category.name
+            itemView.setOnClickListener(listener)
         }
     }
 
