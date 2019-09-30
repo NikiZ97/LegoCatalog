@@ -20,7 +20,6 @@ class LegoThemeFragment : Fragment() {
 
     private val legoThemeViewModel by viewModel<LegoThemeViewModel>()
     private lateinit var themeAdapter: LegoThemesAdapter
-    private var layoutManager: LinearLayoutManager = LinearLayoutManager(context)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lego_theme, container, false)
@@ -29,7 +28,7 @@ class LegoThemeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         themeAdapter = LegoThemesAdapter()
-        legoThemes.layoutManager = layoutManager
+        legoThemes.layoutManager = LinearLayoutManager(context)
         legoThemes.addItemDecoration(LegoThemeItemDecoration(
             resources.getDimension(R.dimen.lego_theme_list_item_space).toInt()
         ))

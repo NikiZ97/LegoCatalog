@@ -10,9 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import ru.nikiz.legocatalog.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class LegoSetsFragment : Fragment() {
 
     private val args: LegoSetsFragmentArgs by navArgs()
