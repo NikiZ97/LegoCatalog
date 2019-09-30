@@ -9,14 +9,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_lego_set.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.nikiz.data.extensions.showErrorMessage
+import ru.nikiz.data.extensions.toggleVisibility
 import ru.nikiz.domain.Result
 import ru.nikiz.legocatalog.R
+import ru.nikiz.legocatalog.ui.util.LegoSetItemDecoration
 
 class LegoSetsFragment : Fragment() {
 
     private val args: LegoSetsFragmentArgs by navArgs()
     private val viewModel by viewModel<LegoSetsViewModel>()
+    private lateinit var adapter: LegoSetsAdapter
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+
+    companion object {
+        private const val SET_LIST_COLUMN_COUNT = 3
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,7 +41,17 @@ class LegoSetsFragment : Fragment() {
             (activity as AppCompatActivity).supportActionBar?.title = it
         }
         viewModel.themeId = args.themeId
+        initRecyclerView()
         subscribeUi()
+    }
+
+    private fun initRecyclerView() {
+        adapter = LegoSetsAdapter()
+        layoutManager = GridLayoutManager(context, SET_LIST_COLUMN_COUNT)
+        sets.layoutManager = layoutManager
+        sets.addItemDecoration(
+            LegoSetItemDecoration(resources.getDimension(R.dimen.lego_list_item_space).toInt()))
+        sets.adapter = adapter
     }
 
     private fun subscribeUi() {
@@ -37,13 +59,15 @@ class LegoSetsFragment : Fragment() {
         viewModel.sets.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.SUCCESS -> {
-                    // show sets
+                    adapter.submitList(it.data)
+                    progress.toggleVisibility(false)
                 }
                 Result.Status.LOADING -> {
-                    // show loading
+                    progress.toggleVisibility(true)
                 }
                 Result.Status.ERROR -> {
-                    // show error
+                    root.showErrorMessage(it.message ?: getString(R.string.unknown_error))
+                    progress.toggleVisibility(false)
                 }
             }
         })

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="lego_theme_list_item_space">5dp</dimen>
+    <dimen name="lego_list_item_space">5dp</dimen>
     <dimen name="lego_theme_list_item_elevation">3dp</dimen>
     <dimen name="lego_theme_list_item_corner_radius">4dp</dimen>
     <dimen name="lego_theme_list_height">70dp</dimen>

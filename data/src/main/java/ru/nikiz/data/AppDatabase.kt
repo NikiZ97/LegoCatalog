@@ -7,8 +7,9 @@ import androidx.room.RoomDatabase
 import ru.nikiz.data.dao.LegoSetDao
 import ru.nikiz.data.dao.LegoThemeDao
 import ru.nikiz.domain.LegoCategory
+import ru.nikiz.domain.LegoSet
 
-@Database(entities = [LegoCategory::class], version = 1, exportSchema = false)
+@Database(entities = [LegoCategory::class, LegoSet::class], version = 2, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun legoThemeDao(): LegoThemeDao
@@ -29,6 +30,7 @@ abstract class AppDatabase: RoomDatabase() {
 
         fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_lego_theme.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.nikiz.data.extensions.showErrorMessage
 import ru.nikiz.data.extensions.toggleVisibility
 import ru.nikiz.domain.Result
 import ru.nikiz.legocatalog.R
@@ -30,7 +30,7 @@ class LegoThemeFragment : Fragment() {
         themeAdapter = LegoThemesAdapter()
         legoThemes.layoutManager = LinearLayoutManager(context)
         legoThemes.addItemDecoration(LegoThemeItemDecoration(
-            resources.getDimension(R.dimen.lego_theme_list_item_space).toInt()
+            resources.getDimension(R.dimen.lego_list_item_space).toInt()
         ))
         legoThemes.adapter = themeAdapter
         subscribeUi()
@@ -41,7 +41,8 @@ class LegoThemeFragment : Fragment() {
             when (result.status) {
                 Result.Status.ERROR -> {
                     progress.toggleVisibility(false)
-                    Toast.makeText(context, "Error: ${result.message}", Toast.LENGTH_LONG).show()
+                    root.showErrorMessage(result.message
+                        ?: getString(R.string.unknown_error))
                 }
                 Result.Status.LOADING -> {
                     progress.toggleVisibility(true)
