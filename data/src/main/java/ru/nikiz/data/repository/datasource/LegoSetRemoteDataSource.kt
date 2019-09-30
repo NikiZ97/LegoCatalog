@@ -2,6 +2,8 @@ package ru.nikiz.data.repository.datasource
 
 import ru.nikiz.data.net.LegoService
 
-class LegoSetRemoteDataSource(apiService: LegoService) {
+class LegoSetRemoteDataSource(private val apiService: LegoService): BaseDataSource() {
 
+    suspend fun getSetsByThemeId(themeId: Int) =
+        getResult { apiService.getSets(1, 1000, themeId, "-id") }
 }

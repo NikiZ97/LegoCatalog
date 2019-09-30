@@ -6,5 +6,5 @@ import ru.nikiz.domain.Result
 
 interface LegoSetRepository {
 
-    fun getSets(): LiveData<Result<List<LegoSet>>>?
+    fun getSets(themeId: Int): LiveData<Result<List<LegoSet>>>
 }
