@@ -14,7 +14,7 @@ class LegoSetRepositoryImpl(private val dao: LegoSetDao,
 
     override fun getSets(themeId: Int): LiveData<Result<List<LegoSet>>> {
         return resultLiveData(
-            { dao.getSets() },
+            { dao.getSetsByTheme(themeId) },
             { legoSetRemoteDataSource.getSetsByThemeId(themeId) },
             { dao.insertAllSets(it.results) })
     }

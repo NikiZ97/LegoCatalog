@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/setImage"
-        android:scaleType="centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="ContentDescription" />
+        <ru.nikiz.legocatalog.ui.util.CustomLegoSetImageView
+            android:id="@+id/setImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:background="@drawable/round_outline"
+            tools:ignore="ContentDescription" />
 
 </LinearLayout>

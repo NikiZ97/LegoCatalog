@@ -27,7 +27,7 @@ class LegoSetsFragment : Fragment() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     companion object {
-        private const val SET_LIST_COLUMN_COUNT = 3
+        private const val SET_LIST_COLUMN_COUNT = 2
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

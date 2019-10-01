@@ -35,7 +35,9 @@ class LegoSetsAdapter: ListAdapter<LegoSet, LegoSetsAdapter.SetViewHolder>(LegoT
     class SetViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(set: LegoSet, listener: View.OnClickListener) {
-            Glide.with(itemView).load(set.imageUrl).into(itemView.setImage)
+            val image = itemView.setImage
+            image.clipToOutline = true
+            Glide.with(itemView.context).load(set.imageUrl).into(image)
             itemView.setOnClickListener(listener)
         }
     }

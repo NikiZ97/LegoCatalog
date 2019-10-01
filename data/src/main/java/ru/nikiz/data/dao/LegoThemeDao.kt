@@ -10,7 +10,7 @@ import ru.nikiz.domain.LegoCategory
 @Dao
 interface LegoThemeDao {
 
-    @Query("SELECT * FROM ${LegoCategory.TABLE_NAME}")
+    @Query("SELECT * FROM ${LegoCategory.TABLE_NAME} ORDER BY ${LegoCategory.COLUMN_ID} DESC")
     fun getThemesFromDb(): LiveData<List<LegoCategory>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

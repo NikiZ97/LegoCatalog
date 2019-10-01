@@ -10,8 +10,8 @@ import ru.nikiz.domain.LegoSet
 @Dao
 interface LegoSetDao {
 
-    @Query("SELECT * FROM ${LegoSet.TABLE_NAME}")
-    fun getSets(): LiveData<List<LegoSet>>
+    @Query("SELECT * FROM ${LegoSet.TABLE_NAME} WHERE themeId = :themeId ORDER BY ${LegoSet.COLUMN_YEAR} DESC")
+    fun getSetsByTheme(themeId: Int): LiveData<List<LegoSet>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllSets(sets: List<LegoSet>)
