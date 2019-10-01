@@ -11,6 +11,7 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             android:background="@drawable/round_outline"
+            android:transitionName="imageview"
             tools:ignore="ContentDescription" />
 
 </LinearLayout>

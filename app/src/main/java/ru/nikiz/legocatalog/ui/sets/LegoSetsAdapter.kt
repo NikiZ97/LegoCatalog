@@ -3,6 +3,7 @@ package ru.nikiz.legocatalog.ui.sets
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,14 +21,14 @@ class LegoSetsAdapter: ListAdapter<LegoSet, LegoSetsAdapter.SetViewHolder>(LegoT
 
     override fun onBindViewHolder(holder: SetViewHolder, position: Int) {
         val set = getItem(position)
-        holder.bind(getItem(position), clickListener(set.id, set.name))
+        holder.bind(getItem(position), clickListener(set.id, set.name, set?.imageUrl))
     }
 
-    private fun clickListener(id: String, name: String): View.OnClickListener {
+    private fun clickListener(id: String, setName: String, imageUrl: String?): View.OnClickListener {
         return View.OnClickListener {
-//            val direction = LegoThemeFragmentDirections
-//                .actionLegoThemeFragmentToLegoSetFragment(id, name)
-//            it.findNavController().navigate(direction)
+            val direction = LegoSetsFragmentDirections
+                .actionLegoSetFragmentToLegoSetDetailsFragment(id, setName, imageUrl)
+            it.findNavController().navigate(direction)
         }
     }
 
