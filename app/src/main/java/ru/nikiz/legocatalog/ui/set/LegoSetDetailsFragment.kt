@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_lego_set_details.*
 import ru.nikiz.legocatalog.R
 
@@ -23,7 +24,9 @@ class LegoSetDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = args.setName
+        val mainActivity = (activity as AppCompatActivity)
+        mainActivity.supportActionBar?.title = args.setName
+        mainActivity.appBarLayout.setExpanded(true)
         args.imageUrl?.let {
             Glide.with(context!!).load(it).into(setImage)
         }
