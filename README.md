@@ -8,3 +8,4 @@
 * Room for storing data on a device
 * Jetpack Navigation for destinations graph building (first try of this tool)
 * Clean Architecture with AAC MVVM (with LiveData) in presentation layer
+* Koin for Dependency Injection
