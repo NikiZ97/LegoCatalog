@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,11 +48,19 @@ class LegoSetsFragment : Fragment() {
 
     private fun initRecyclerView() {
         adapter = LegoSetsAdapter()
+        setOnLegoSetClickListener()
         layoutManager = GridLayoutManager(context, SET_LIST_COLUMN_COUNT)
         sets.layoutManager = layoutManager
-        sets.addItemDecoration(
-            LegoSetItemDecoration(resources.getDimension(R.dimen.lego_list_item_space).toInt()))
+        sets.addItemDecoration(LegoSetItemDecoration(resources.getDimension(R.dimen.lego_list_item_space).toInt()))
         sets.adapter = adapter
+    }
+
+    private fun setOnLegoSetClickListener() {
+        adapter.onLegoSetClickListener = { id, name, url ->
+            val direction = LegoSetsFragmentDirections
+                .actionLegoSetFragmentToLegoSetDetailsFragment(id, name, url)
+            findNavController().navigate(direction)
+        }
     }
 
     private fun subscribeUi() {

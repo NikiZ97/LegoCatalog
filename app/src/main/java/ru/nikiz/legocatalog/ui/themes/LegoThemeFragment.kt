@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_lego_theme.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -32,8 +33,17 @@ class LegoThemeFragment : Fragment() {
         legoThemes.addItemDecoration(LegoThemeItemDecoration(
             resources.getDimension(R.dimen.lego_list_item_space).toInt()
         ))
+        setOnThemeClickListener()
         legoThemes.adapter = themeAdapter
         subscribeUi()
+    }
+
+    private fun setOnThemeClickListener() {
+        themeAdapter.onThemeClickListener = { themeId, themeName ->
+            val direction = LegoThemeFragmentDirections
+                .actionLegoThemeFragmentToLegoSetFragment(themeId, themeName)
+            findNavController().navigate(direction)
+        }
     }
 
     private fun subscribeUi() {

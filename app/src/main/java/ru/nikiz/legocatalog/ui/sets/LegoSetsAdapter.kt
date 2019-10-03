@@ -3,7 +3,6 @@ package ru.nikiz.legocatalog.ui.sets
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,35 +10,30 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.lego_set_item.view.*
 import ru.nikiz.domain.LegoSet
 import ru.nikiz.legocatalog.R
+import ru.nikiz.legocatalog.ui.util.LegoSetInfo
 
 class LegoSetsAdapter: ListAdapter<LegoSet, LegoSetsAdapter.SetViewHolder>(LegoThemeDiffCallback()) {
 
+    lateinit var onLegoSetClickListener: LegoSetInfo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetViewHolder {
         return SetViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.lego_set_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: SetViewHolder, position: Int) {
-        val set = getItem(position)
-        holder.bind(getItem(position), clickListener(set.id, set.name, set?.imageUrl))
-    }
-
-    private fun clickListener(id: String, setName: String, imageUrl: String?): View.OnClickListener {
-        return View.OnClickListener {
-            val direction = LegoSetsFragmentDirections
-                .actionLegoSetFragmentToLegoSetDetailsFragment(id, setName, imageUrl)
-            it.findNavController().navigate(direction)
-        }
+        holder.bind(getItem(position))
     }
 
 
-    class SetViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class SetViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(set: LegoSet, listener: View.OnClickListener) {
+        fun bind(set: LegoSet) {
             val image = itemView.setImage
             image.clipToOutline = true
             Glide.with(itemView.context).load(set.imageUrl).into(image)
-            itemView.setOnClickListener(listener)
+            itemView.setOnClickListener {
+                onLegoSetClickListener.invoke(set.id, set.name, set.imageUrl)
+            }
         }
     }
 
