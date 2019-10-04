@@ -7,5 +7,5 @@ import ru.nikiz.legocatalog.ui.themes.LegoThemeViewModel
 
 val viewModelModule = module {
     viewModel { LegoThemeViewModel(get()) }
-    viewModel { LegoSetsViewModel(get()) }
+    viewModel { (themeId: Int) -> LegoSetsViewModel(get(), themeId) }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_lego_set.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import ru.nikiz.data.extensions.showErrorMessage
 import ru.nikiz.data.extensions.toggleVisibility
 import ru.nikiz.domain.Result
@@ -23,7 +24,7 @@ import ru.nikiz.legocatalog.ui.util.LegoSetItemDecoration
 class LegoSetsFragment : Fragment() {
 
     private val args: LegoSetsFragmentArgs by navArgs()
-    private val viewModel by viewModel<LegoSetsViewModel>()
+    private val viewModel by viewModel<LegoSetsViewModel> { parametersOf(args.themeId) }
     private lateinit var adapter: LegoSetsAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
@@ -41,7 +42,6 @@ class LegoSetsFragment : Fragment() {
         args.themeName?.let {
             (activity as AppCompatActivity).supportActionBar?.title = it
         }
-        viewModel.themeId = args.themeId
         initRecyclerView()
         subscribeUi()
     }
@@ -64,7 +64,6 @@ class LegoSetsFragment : Fragment() {
     }
 
     private fun subscribeUi() {
-        viewModel.getSets()
         viewModel.sets.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.SUCCESS -> {

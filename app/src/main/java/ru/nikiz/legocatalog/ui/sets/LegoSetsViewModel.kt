@@ -8,12 +8,11 @@ import ru.nikiz.domain.LegoSet
 import ru.nikiz.domain.Result
 import ru.nikiz.domain.interactor.LegoSetInteractor
 
-class LegoSetsViewModel(private val interactor: LegoSetInteractor): ViewModel() {
+class LegoSetsViewModel(private val interactor: LegoSetInteractor, themeId: Int): ViewModel() {
 
     lateinit var sets: LiveData<Result<List<LegoSet>>>
-    var themeId: Int = 0
 
-    fun getSets() {
+    init {
         viewModelScope.launch {
             sets = interactor.getSets(themeId)
         }
