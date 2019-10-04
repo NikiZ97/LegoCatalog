@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_lego_set.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.nikiz.data.extensions.showErrorMessage
-import ru.nikiz.data.extensions.toggleVisibility
 import ru.nikiz.domain.Result
 import ru.nikiz.legocatalog.R
+import ru.nikiz.legocatalog.extensions.showErrorMessage
+import ru.nikiz.legocatalog.extensions.toggleVisibility
 import ru.nikiz.legocatalog.ui.util.LegoSetItemDecoration
 
 class LegoSetsFragment : Fragment() {

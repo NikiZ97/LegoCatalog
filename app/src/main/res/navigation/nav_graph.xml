@@ -53,7 +53,7 @@
             app:argType="string" />
 
         <argument
-            android:name="setName"
+            android:name="legoSetName"
             app:argType="string"/>
 
         <argument

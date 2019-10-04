@@ -25,7 +25,7 @@ class LegoSetDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mainActivity = (activity as AppCompatActivity)
-        mainActivity.supportActionBar?.title = args.setName
+        mainActivity.supportActionBar?.title = args.legoSetName
         mainActivity.appBarLayout.setExpanded(true)
         args.imageUrl?.let {
             Glide.with(context!!).load(it).into(setImage)

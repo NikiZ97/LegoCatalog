@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_lego_theme.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.nikiz.data.extensions.showErrorMessage
-import ru.nikiz.data.extensions.toggleVisibility
 import ru.nikiz.domain.Result
 import ru.nikiz.legocatalog.R
+import ru.nikiz.legocatalog.extensions.showErrorMessage
+import ru.nikiz.legocatalog.extensions.toggleVisibility
 import ru.nikiz.legocatalog.ui.util.LegoThemeItemDecoration
 
 class LegoThemeFragment : Fragment() {

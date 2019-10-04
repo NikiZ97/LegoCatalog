@@ -1,4 +1,4 @@
-package ru.nikiz.data.extensions
+package ru.nikiz.legocatalog.extensions
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
